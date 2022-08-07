@@ -1,4 +1,13 @@
-export default function Containers(Components) {
+import { BusinessModal, CityModal, LocalityModal } from "_components";
+
+export default function containers(Components) {
   const data = "Rajib Mandal";
-  return () => <Components value={data} />;
+  return () => (
+    <>
+      <Components value={data} />
+      <BusinessModal />
+      <CityModal />
+      <LocalityModal />
+    </>
+  );
 }
