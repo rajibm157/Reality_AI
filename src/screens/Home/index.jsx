@@ -1,9 +1,20 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import containers from "_containers";
 import { images } from "_constants";
 
-function HomeScreen() {
+function HomeScreen({ spinner }) {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    spinner.show();
+    setTimeout(() => {
+      spinner.hide();
+    }, 3000);
+
+    return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
