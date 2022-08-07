@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 function HomeScreen() {
+  const navigate = useNavigate();
+
   return (
     <>
       <main className="main">
@@ -58,12 +62,7 @@ function HomeScreen() {
                 <button
                   type="button"
                   className="btn btn-primary btn-lg rounded-5 shadow"
-                >
-                  Search Locality
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-primary btn-lg rounded-5 shadow"
+                  onClick={() => navigate("properties")}
                 >
                   Search Property
                 </button>
