@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { images } from "_constants";
 
 function HomeScreen() {
   const navigate = useNavigate();
@@ -20,8 +21,8 @@ function HomeScreen() {
                     data-bs-target="#businessType"
                     className="btn btn-light btn-lg rounded-pill d-flex justify-content-between align-items-center"
                   >
-                    <img src="assets/images/home.svg" alt="" /> Business Type{" "}
-                    <img src="assets/images/down-arrow.svg" alt="" />
+                    <img src={images.home} alt="" /> Business Type{" "}
+                    <img src={images.down_arrow} alt="" />
                   </button>
                 </div>
                 <div className="col-5 d-grid mb-2">
@@ -31,8 +32,8 @@ function HomeScreen() {
                     data-bs-target="#city"
                     className="btn btn-light btn-lg rounded-pill d-flex justify-content-between align-items-center"
                   >
-                    <img src="assets/images/map-location.svg" alt="" />
-                    City <img src="assets/images/down-arrow.svg" alt="" />
+                    <img src={images.map_location} alt="" />
+                    City <img src={images.down_arrow} alt="" />
                   </button>
                 </div>
                 <div className="col-12 d-grid mb-2">
@@ -42,8 +43,7 @@ function HomeScreen() {
                     data-bs-target="#DesiredLocation"
                     className="btn btn-light btn-lg rounded-pill d-flex justify-content-between align-items-center"
                   >
-                    Your Desired Location{" "}
-                    <img src="assets/images/icons8_search.svg" alt="" />
+                    Your Desired Location <img src={images.search} alt="" />
                   </button>
                 </div>
                 <div className="col-12 d-grid mb-2 mb-3">
@@ -51,7 +51,7 @@ function HomeScreen() {
                     Select a Price Range:
                   </label>
                   <div className="custom-slider">
-                    <img src="assets/images/ranger.svg" alt="" />
+                    <img src={images.ranger} alt="" />
                   </div>
                 </div>
               </div>
@@ -72,7 +72,7 @@ function HomeScreen() {
         </section>
       </main>
       <div className="Illustration-img">
-        <img src="assets/images/Illustration.svg" alt="" />
+        <img src={images.illustration} alt="" />
       </div>
       {/* Business Modal */}
       <div
