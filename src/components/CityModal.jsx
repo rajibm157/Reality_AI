@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { memo, useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useContext } from "_contexts";
@@ -8,26 +7,26 @@ function CityModal() {
   const { updateCity } = useContext();
   const [cities, setCities] = useState([]);
   const [filterCities, setFilterCities] = useState([]);
-  const [search, setSearch] = useState("");
-
-  const getCities = useCallback(() => {
-    api
-      .getCities()
-      .then(({ data }) => {
-        setCities(data.cities);
-        setFilterCities(data.cities);
-      })
-      .catch((error) => toast.error(error.message));
-  }, []);
-
-  useEffect(() => getCities(), []);
 
   useEffect(() => {
-    const filter = cities.filter((item) =>
-      item.name.toLowerCase().includes(search.toLowerCase())
-    );
-    setFilterCities(filter);
-  }, [search]);
+    (async () => {
+      const { data } = await api
+        .getCities()
+        .catch((error) => toast.error(error.message));
+      setCities(data.cities);
+      setFilterCities(data.cities);
+    })();
+  }, []);
+
+  const filter = useCallback(
+    (params) => {
+      const filterArr = cities.filter((item) =>
+        item.name.toLowerCase().includes(params.toLowerCase())
+      );
+      setFilterCities(filterArr);
+    },
+    [cities]
+  );
 
   return (
     <div
@@ -57,8 +56,7 @@ function CityModal() {
                 type="text"
                 className="form-control form-control-lg btn-light search-input"
                 placeholder="Search City.."
-                onChange={(e) => setSearch(e.target.value)}
-                value={search}
+                onChange={(e) => filter(e.target.value)}
               />
             </div>
             {filterCities &&
