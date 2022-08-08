@@ -1,41 +1,26 @@
-import { useMemo } from "react";
-import { useState } from "react";
-import { InfinitySpin } from "react-loader-spinner";
-import { BusinessModal, CityModal, LocalityModal } from "_components";
+import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { BusinessModal, CityModal, Loading, LocalityModal } from "_components";
 
 export default function containers(Components) {
   return (props) => {
-    const [showLoader, setshowLoader] = useState(true);
-    const [city, setCity] = useState(null);
+    const navigate = useNavigate();
+    const [showLoader, setshowLoader] = useState(false);
 
     const spinner = useMemo(
       () => ({
-        show: () => setshowLoader(false),
-        hide: () => setshowLoader(true),
+        show: () => setshowLoader(true),
+        hide: () => setshowLoader(false),
       }),
       []
     );
 
     return (
       <>
-        <div
-          hidden={showLoader}
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            zIndex: "999",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "rgba(10, 10, 10, 0.95)",
-          }}
-        >
-          <InfinitySpin width="200" color="#0c94af" />
-        </div>
-        <Components spinner={spinner} {...props} city={city} />
+        <Loading show={showLoader} />
+        <Components spinner={spinner} navigate={navigate} {...props} />
         <BusinessModal />
-        <CityModal onSelect={(e) => setCity(e)} />
+        <CityModal />
         <LocalityModal />
       </>
     );

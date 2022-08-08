@@ -1,5 +1,5 @@
-import HomeScreen from "./Home";
-import DetailsScreen from "./Details";
-import PropertiesScreen from "./Properties";
+import React from "react";
 
-export { HomeScreen, DetailsScreen, PropertiesScreen };
+export const HomeScreen = React.lazy(() => import("./Home"));
+export const DetailsScreen = React.lazy(() => import("./Details"));
+export const PropertiesScreen = React.lazy(() => import("./Properties"));

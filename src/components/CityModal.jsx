@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { memo, useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import PropTypes from "prop-types";
+import { useContext } from "_contexts";
 import { api } from "_services";
 
-function CityModal({ onSelect }) {
+function CityModal() {
+  const { updateCity } = useContext();
   const [cities, setCities] = useState([]);
   const [filterCities, setFilterCities] = useState([]);
   const [search, setSearch] = useState("");
@@ -45,7 +46,7 @@ function CityModal({ onSelect }) {
             <button
               type="button"
               className="btn text-primary"
-              onClick={() => onSelect(null)}
+              onClick={() => updateCity(null)}
             >
               Reset
             </button>
@@ -68,7 +69,7 @@ function CityModal({ onSelect }) {
                     type="radio"
                     name="city"
                     id={city._id}
-                    onChange={() => onSelect(city)}
+                    onChange={() => updateCity(city)}
                     value={city._id}
                   />
                   <label className="form-check-label" htmlFor={city._id}>
@@ -82,9 +83,5 @@ function CityModal({ onSelect }) {
     </div>
   );
 }
-
-CityModal.propTypes = {
-  onSelect: PropTypes.func,
-};
 
 export default memo(CityModal);

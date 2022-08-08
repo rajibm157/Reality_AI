@@ -1,21 +1,10 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import containers from "_containers";
+import { useContext } from "_contexts";
 import { images } from "_constants";
 
-function HomeScreen({ spinner, city }) {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    spinner.show();
-    setTimeout(() => {
-      spinner.hide();
-    }, 3000);
-
-    return () => {};
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+function HomeScreen({ navigate }) {
+  const { city } = useContext();
 
   const onNavigate = () => {
     if (!city) {

@@ -1,7 +1,18 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import containers from "_containers";
 
-function PropertiesScreen(props) {
+function PropertiesScreen({ spinner }) {
+  useEffect(() => {
+    spinner.show();
+    setTimeout(() => {
+      spinner.hide();
+    }, 2000);
+
+    return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <main className="main">
       <header className="header py-3">
