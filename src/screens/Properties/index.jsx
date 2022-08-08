@@ -1,15 +1,21 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import containers from "_containers";
+import { importScript } from "_services";
 
 function PropertiesScreen({ spinner }) {
   useEffect(() => {
     spinner.show();
     setTimeout(() => {
       spinner.hide();
+      importScript("owl.carousel");
+      importScript("custom");
     }, 2000);
 
-    return () => {};
+    return () => {
+      importScript("owl.carousel", false);
+      importScript("custom", false);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -85,9 +91,9 @@ function PropertiesScreen({ spinner }) {
                   <div className="d-flex align-items-start">
                     <span className="badge bg-success">8.2</span>
                     <h3>
-                      <a href="details-page.html">
+                      <Link to="/properties/details">
                         #2 Best Value for Business Perfect for your Business
-                      </a>
+                      </Link>
                     </h3>
                   </div>
                   <address>
