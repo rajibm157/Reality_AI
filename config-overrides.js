@@ -8,7 +8,7 @@ module.exports = function override(config) {
     "_contexts": "src/contexts",
     "_routes": "src/routes",
     "_screens": "src/screens",
-    "_services": "src/services",
+    "_utils": "src/utils",
   })(config);
 
   return config;

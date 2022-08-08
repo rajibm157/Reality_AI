@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useContext } from "_contexts";
-import { api } from "_services";
+import { api } from "_utils";
 
 function CityModal() {
   const { updateCity } = useContext();

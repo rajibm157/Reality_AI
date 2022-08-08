@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import containers from "_containers";
-import { importScript } from "_services";
+import { importScript } from "_utils";
 
 function PropertiesScreen({ spinner }) {
   useEffect(() => {
