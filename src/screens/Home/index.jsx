@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import containers from "_containers";
 import { images } from "_constants";
 
-function HomeScreen({ spinner }) {
+function HomeScreen({ spinner, city }) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,6 +16,13 @@ function HomeScreen({ spinner }) {
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const onNavigate = () => {
+    if (!city) {
+      return toast.info("Please select a city");
+    }
+    navigate("properties");
+  };
 
   return (
     <>
@@ -33,7 +41,8 @@ function HomeScreen({ spinner }) {
                     data-bs-target="#businessType"
                     className="btn btn-light btn-lg rounded-pill d-flex justify-content-between align-items-center"
                   >
-                    <img src={images.home} alt="" /> Business Type{" "}
+                    <img src={images.home} alt="" />
+                    Business Type
                     <img src={images.down_arrow} alt="" />
                   </button>
                 </div>
@@ -45,7 +54,8 @@ function HomeScreen({ spinner }) {
                     className="btn btn-light btn-lg rounded-pill d-flex justify-content-between align-items-center"
                   >
                     <img src={images.map_location} alt="" />
-                    City <img src={images.down_arrow} alt="" />
+                    {city ? city.name : "City"}
+                    <img src={images.down_arrow} alt="" />
                   </button>
                 </div>
                 <div className="col-12 d-grid mb-2">
@@ -74,7 +84,7 @@ function HomeScreen({ spinner }) {
                 <button
                   type="button"
                   className="btn btn-primary btn-lg rounded-5 shadow"
-                  onClick={() => navigate("properties")}
+                  onClick={onNavigate}
                 >
                   Search Property
                 </button>

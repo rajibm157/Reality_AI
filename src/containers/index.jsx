@@ -4,10 +4,9 @@ import { InfinitySpin } from "react-loader-spinner";
 import { BusinessModal, CityModal, LocalityModal } from "_components";
 
 export default function containers(Components) {
-  const data = "Rajib Mandal";
-
   return (props) => {
     const [showLoader, setshowLoader] = useState(true);
+    const [city, setCity] = useState(null);
 
     const spinner = useMemo(
       () => ({
@@ -34,9 +33,9 @@ export default function containers(Components) {
         >
           <InfinitySpin width="200" color="#0c94af" />
         </div>
-        <Components spinner={spinner} {...props} value={data} />
+        <Components spinner={spinner} {...props} city={city} />
         <BusinessModal />
-        <CityModal />
+        <CityModal onSelect={(e) => setCity(e)} />
         <LocalityModal />
       </>
     );
