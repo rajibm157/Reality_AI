@@ -4,7 +4,7 @@ import { useContext } from "_contexts";
 import { api } from "_utils";
 
 function CityModal() {
-  const { updateCity } = useContext();
+  const { city, updateCity } = useContext();
   const [cities, setCities] = useState([]);
   const [filterCities, setFilterCities] = useState([]);
 
@@ -60,18 +60,19 @@ function CityModal() {
               />
             </div>
             {filterCities &&
-              filterCities.map((city) => (
-                <div className="form-check md-radio mb-2" key={city.name}>
+              filterCities.map((item) => (
+                <div className="form-check md-radio mb-2" key={item.name}>
                   <input
                     className="form-check-input"
                     type="radio"
                     name="city"
-                    id={city._id}
-                    onChange={() => updateCity(city)}
-                    value={city._id}
+                    id={item._id}
+                    onChange={() => updateCity(item)}
+                    value={item._id}
+                    checked={city?._id === item._id}
                   />
-                  <label className="form-check-label" htmlFor={city._id}>
-                    {city.name}
+                  <label className="form-check-label" htmlFor={item._id}>
+                    {item.name}
                   </label>
                 </div>
               ))}

@@ -4,11 +4,11 @@ import { useContext } from "_contexts";
 import { images } from "_constants";
 
 function HomeScreen({ navigate }) {
-  const { city } = useContext();
+  const { city, businessType } = useContext();
 
   const onNavigate = () => {
-    if (!city) {
-      return toast.info("Please select a city");
+    if (!city && !businessType) {
+      return toast.info("Please select a city and business type");
     }
     navigate("properties");
   };
@@ -31,7 +31,7 @@ function HomeScreen({ navigate }) {
                     className="btn btn-light btn-lg rounded-pill d-flex justify-content-between align-items-center"
                   >
                     <img src={images.home} alt="" />
-                    Business Type
+                    {businessType ? businessType.title : "Business Type"}
                     <img src={images.down_arrow} alt="" />
                   </button>
                 </div>
