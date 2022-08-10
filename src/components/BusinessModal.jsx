@@ -1,6 +1,7 @@
 import { memo, useCallback, useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 import { useContext } from "_contexts";
 import { api } from "_utils";
 
@@ -57,7 +58,7 @@ function BusinessModal({ show, onClose }) {
         </div>
         {filterBusinessType &&
           filterBusinessType.map((item) => (
-            <div className="form-check md-radio mb-2" key={item.title}>
+            <div className="form-check md-radio mb-2" key={item._id}>
               <input
                 className="form-check-input"
                 type="radio"
@@ -79,5 +80,10 @@ function BusinessModal({ show, onClose }) {
     </Modal>
   );
 }
+
+BusinessModal.propTypes = {
+  show: PropTypes.bool,
+  onclose: PropTypes.func,
+};
 
 export default memo(BusinessModal);

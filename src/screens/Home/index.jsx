@@ -1,10 +1,11 @@
+import { Fragment } from "react";
 import { toast } from "react-toastify";
 import containers from "_containers";
 import { useContext } from "_contexts";
 import { images } from "_constants";
 
 function HomeScreen({ navigate, modals }) {
-  const { city, businessType } = useContext();
+  const { city, businessType, localities } = useContext();
 
   const onNavigate = () => {
     if (!city && !businessType) {
@@ -51,7 +52,19 @@ function HomeScreen({ navigate, modals }) {
                     onClick={modals.showLocality}
                     className="btn btn-light btn-lg rounded-pill d-flex justify-content-between align-items-center"
                   >
-                    Your Desired Location <img src={images.search} alt="" />
+                    {localities.length > 0 ? (
+                      <>
+                        {localities.map((item, index) => (
+                          <Fragment key={item._id}>
+                            {item.name}
+                            {index !== localities.length - 1 && ", "}
+                          </Fragment>
+                        ))}
+                      </>
+                    ) : (
+                      "Your Desired Location"
+                    )}
+                    <img src={images.search} alt="" />
                   </button>
                 </div>
                 <div className="col-12 d-grid mb-2 mb-3">
