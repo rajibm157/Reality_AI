@@ -3,7 +3,7 @@ import containers from "_containers";
 import { useContext } from "_contexts";
 import { images } from "_constants";
 
-function HomeScreen({ navigate }) {
+function HomeScreen({ navigate, modals }) {
   const { city, businessType } = useContext();
 
   const onNavigate = () => {
@@ -26,8 +26,7 @@ function HomeScreen({ navigate }) {
                 <div className="col-7 d-grid mb-2">
                   <button
                     type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#businessType"
+                    onClick={modals.showBusiness}
                     className="btn btn-light btn-lg rounded-pill d-flex justify-content-between align-items-center"
                   >
                     <img src={images.home} alt="" />
@@ -38,8 +37,7 @@ function HomeScreen({ navigate }) {
                 <div className="col-5 d-grid mb-2">
                   <button
                     type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#city"
+                    onClick={modals.showCity}
                     className="btn btn-light btn-lg rounded-pill d-flex justify-content-between align-items-center"
                   >
                     <img src={images.map_location} alt="" />
@@ -50,8 +48,7 @@ function HomeScreen({ navigate }) {
                 <div className="col-12 d-grid mb-2">
                   <button
                     type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#DesiredLocation"
+                    onClick={modals.showLocality}
                     className="btn btn-light btn-lg rounded-pill d-flex justify-content-between align-items-center"
                   >
                     Your Desired Location <img src={images.search} alt="" />

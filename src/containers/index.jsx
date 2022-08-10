@@ -6,6 +6,9 @@ export default function containers(Components) {
   return (props) => {
     const navigate = useNavigate();
     const [showLoader, setshowLoader] = useState(false);
+    const [showCityModal, setshowCityModal] = useState(false);
+    const [showLocalityModal, setshowLocalityModal] = useState(false);
+    const [showBusinessModal, setshowBusinessModal] = useState(false);
 
     const spinner = useMemo(
       () => ({
@@ -15,13 +18,30 @@ export default function containers(Components) {
       []
     );
 
+    const modals = useMemo(
+      () => ({
+        showCity: () => setshowCityModal(true),
+        hideCity: () => setshowCityModal(false),
+        showLocality: () => setshowLocalityModal(true),
+        hideLocality: () => setshowLocalityModal(false),
+        showBusiness: () => setshowBusinessModal(true),
+        hideBusiness: () => setshowBusinessModal(false),
+      }),
+      []
+    );
+
     return (
       <>
         <Loading show={showLoader} />
-        <Components spinner={spinner} navigate={navigate} {...props} />
-        <BusinessModal />
-        <CityModal />
-        <LocalityModal />
+        <Components
+          spinner={spinner}
+          modals={modals}
+          navigate={navigate}
+          {...props}
+        />
+        <CityModal show={showCityModal} onClose={modals.hideCity} />
+        <LocalityModal show={showLocalityModal} onClose={modals.hideLocality} />
+        <BusinessModal show={showBusinessModal} onClose={modals.hideBusiness} />
       </>
     );
   };

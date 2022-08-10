@@ -740,3 +740,14 @@ table.property-to-compare-table tr th:first-child {
   z-index: 11;
   background-color: var(--bg-light);
 }
+
+.all-modal {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  top: auto;
+  transform: translate(-50%);
+  height: auto;
+  max-height: 80%;
+}
