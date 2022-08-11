@@ -6,7 +6,7 @@ import { useContext } from "_contexts";
 import { api } from "_utils";
 
 function LocalityModal({ show, onClose }) {
-  const { localities, updateLocality } = useContext();
+  const { localities, updateLocality, resetLocality } = useContext();
   const [allLocalities, setAllLocalities] = useState([]);
   const [filterLocalities, setFilterLocalities] = useState([]);
 
@@ -50,7 +50,7 @@ function LocalityModal({ show, onClose }) {
           <button
             type="button"
             className="btn text-primary"
-            onClick={() => updateLocality([])}
+            onClick={() => resetLocality([])}
           >
             Reset
           </button>
@@ -73,7 +73,7 @@ function LocalityModal({ show, onClose }) {
                 type="checkbox"
                 name="locality"
                 id={item._id}
-                onChange={() => updateLocality([...localities, item])}
+                onChange={() => updateLocality(item)}
                 value={item._id}
                 checked={localities?.includes(item)}
               />

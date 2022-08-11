@@ -16,10 +16,16 @@ function ContextProvider(props) {
   const data = useMemo(
     () => ({
       updateCity: (params) => setCity(params),
-      updateLocality: (params) => setLocalities(params),
+      updateLocality: (params) => {
+        if (!localities.includes(params)) {
+          return setLocalities((prev) => [...prev, params]);
+        }
+        setLocalities((prev) => prev.filter((item) => item !== params));
+      },
+      resetLocality: (params) => setLocalities(params),
       updateBusinessType: (params) => setBusinessType(params),
     }),
-    []
+    [localities]
   );
 
   return (
