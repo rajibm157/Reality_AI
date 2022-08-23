@@ -15,8 +15,8 @@ function LocalityModal({ show, onClose }) {
       const { data } = await api
         .getLocalities()
         .catch((error) => toast.error(error.message));
-      setAllLocalities(data.localities);
-      setFilterLocalities(data.localities);
+      setAllLocalities(data?.localities);
+      setFilterLocalities(data?.localities);
     })();
   }, []);
 

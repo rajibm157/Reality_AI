@@ -15,8 +15,8 @@ function CityModal({ show, onClose }) {
       const { data } = await api
         .getCities()
         .catch((error) => toast.error(error.message));
-      setCities(data.cities);
-      setFilterCities(data.cities);
+      setCities(data?.cities);
+      setFilterCities(data?.cities);
     })();
   }, []);
 

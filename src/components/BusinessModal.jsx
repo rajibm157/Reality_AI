@@ -15,8 +15,8 @@ function BusinessModal({ show, onClose }) {
       const { data } = await api
         .getBusinessTypes()
         .catch((error) => toast.error(error.message));
-      setBusinessTypes(data.businessTypes);
-      setFilterBusinessType(data.businessTypes);
+      setBusinessTypes(data?.businessTypes);
+      setFilterBusinessType(data?.businessTypes);
     })();
   }, []);
 
