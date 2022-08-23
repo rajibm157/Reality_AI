@@ -30,9 +30,9 @@ function HomeScreen({ navigate, modals }) {
                     onClick={modals.showBusiness}
                     className="btn btn-light btn-lg rounded-pill d-flex justify-content-between align-items-center"
                   >
-                    <img src={images.home} alt="" />
+                    <img src={images.home} alt="home" />
                     {businessType ? businessType.title : "Business Type"}
-                    <img src={images.down_arrow} alt="" />
+                    <img src={images.down_arrow} alt="down_arrow" />
                   </button>
                 </div>
                 <div className="col-5 d-grid mb-2">
@@ -41,9 +41,9 @@ function HomeScreen({ navigate, modals }) {
                     onClick={modals.showCity}
                     className="btn btn-light btn-lg rounded-pill d-flex justify-content-between align-items-center"
                   >
-                    <img src={images.map_location} alt="" />
+                    <img src={images.map_location} alt="map_location" />
                     {city ? city.name : "City"}
-                    <img src={images.down_arrow} alt="" />
+                    <img src={images.down_arrow} alt="down_arrow" />
                   </button>
                 </div>
                 <div className="col-12 d-grid mb-2">
@@ -64,7 +64,7 @@ function HomeScreen({ navigate, modals }) {
                     ) : (
                       "Your Desired Location"
                     )}
-                    <img src={images.search} alt="" />
+                    <img src={images.search} alt="search" />
                   </button>
                 </div>
                 <div className="col-12 d-grid mb-2 mb-3">
@@ -72,7 +72,7 @@ function HomeScreen({ navigate, modals }) {
                     Select a Price Range:
                   </label>
                   <div className="custom-slider">
-                    <img src={images.ranger} alt="" />
+                    <img src={images.ranger} alt="ranger" />
                   </div>
                 </div>
               </div>
@@ -93,7 +93,7 @@ function HomeScreen({ navigate, modals }) {
         </section>
       </main>
       <div className="Illustration-img">
-        <img src={images.illustration} alt="" />
+        <img src={images.illustration} alt="illustration" />
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { images } from "_constants";
 
 function Property(props) {
   return (
@@ -9,12 +10,12 @@ function Property(props) {
         <div className="col-4 p-0">
           <div className="property-img relative">
             <div className="bookbark">
-              <img src="assets/images/bookmark.svg" alt="" />
+              <img src={images.bookmark} alt="bookmark" />
             </div>
             <div className="compare-btn">
               <span className="btn btn-light rounded-5">Compare</span>
             </div>
-            <img src="assets/images/img.jpg" alt="" />
+            <img src={images.img} alt="img" />
           </div>
         </div>
         <div className="col-8 p-0">
@@ -44,34 +45,31 @@ function Property(props) {
         <h3>Factors that you should consider:</h3>
         <div className="owl-carousel owl-theme property-carousel">
           <div className="item p-2 rounded-4 shadow bg-white text-center">
-            <img src="assets/images/png/winner.png" alt="" />
+            <img src={images.winner} alt="winner" />
             <h4>Competition</h4>
             <h5 className="text-success">HIGH</h5>
             <p>4 restaurants/1000 people</p>
           </div>
           <div className="item p-2 rounded-4 shadow bg-white text-center">
-            <img src="assets/images/png/ion_footsteps-outline.svg" alt="" />
+            <img src={images.ion_footsteps} alt="ion_footsteps" />
             <h4>Footfalls</h4>
             <h5 className="text-warning">MEDIUM</h5>
             <p>100 people/day (150m radius)</p>
           </div>
           <div className="item p-2 rounded-4 shadow bg-white text-center">
-            <img src="assets/images/png/fluent_people-audience.svg" alt="" />
+            <img src={images.fluent_people} alt="fluent_people" />
             <h4>Population</h4>
             <h5 className="text-danger">LOW</h5>
             <p>1000 people (1km radius)</p>
           </div>
           <div className="item p-2 rounded-4 shadow bg-white text-center">
-            <img
-              src="assets/images/png/ic_outline-business-center.svg"
-              alt=""
-            />
+            <img src={images.ic_outline} alt="ic_outline" />
             <h4>Market Presence</h4>
             <h5 className="text-success">HIGH</h5>
             <p>10 Shops in JPM Mall</p>
           </div>
           <div className="item p-2 rounded-4 shadow bg-white text-center">
-            <img src="assets/images/png/wallet.svg" alt="" />
+            <img src={images.wallet} alt="wallet" />
             <h4>Income</h4>
             <h5 className="text-danger">LOW</h5>
             <p>₹40,000/person (1km radius)</p>
