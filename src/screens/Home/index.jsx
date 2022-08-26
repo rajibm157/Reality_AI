@@ -1,11 +1,19 @@
 import { Fragment } from "react";
 import { toast } from "react-toastify";
-import containers from "_containers";
+import { useNavigate } from "react-router-dom";
 import { useContext } from "_contexts";
 import { images } from "_constants";
 
-function HomeScreen({ navigate, modals }) {
-  const { city, businessType, localities } = useContext();
+function HomeScreen() {
+  const navigate = useNavigate();
+  const {
+    city,
+    businessType,
+    localities,
+    showBusiness,
+    showCity,
+    showLocality,
+  } = useContext();
 
   const onNavigate = () => {
     if (!city && !businessType) {
@@ -27,7 +35,7 @@ function HomeScreen({ navigate, modals }) {
                 <div className="col-7 d-grid mb-2">
                   <button
                     type="button"
-                    onClick={modals.showBusiness}
+                    onClick={showBusiness}
                     className="btn btn-light btn-lg rounded-pill d-flex justify-content-between align-items-center"
                   >
                     <img src={images.home} alt="home" />
@@ -38,7 +46,7 @@ function HomeScreen({ navigate, modals }) {
                 <div className="col-5 d-grid mb-2">
                   <button
                     type="button"
-                    onClick={modals.showCity}
+                    onClick={showCity}
                     className="btn btn-light btn-lg rounded-pill d-flex justify-content-between align-items-center"
                   >
                     <img src={images.map_location} alt="map_location" />
@@ -49,7 +57,7 @@ function HomeScreen({ navigate, modals }) {
                 <div className="col-12 d-grid mb-2">
                   <button
                     type="button"
-                    onClick={modals.showLocality}
+                    onClick={showLocality}
                     className="btn btn-light btn-lg rounded-pill d-flex justify-content-between align-items-center"
                   >
                     {localities.length > 0 ? (
@@ -99,4 +107,4 @@ function HomeScreen({ navigate, modals }) {
   );
 }
 
-export default containers(HomeScreen);
+export default HomeScreen;

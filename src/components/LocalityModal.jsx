@@ -1,12 +1,17 @@
 import { memo, useCallback, useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
-import PropTypes from "prop-types";
 import { useContext } from "_contexts";
 import { api } from "_utils";
 
-function LocalityModal({ show, onClose }) {
-  const { localities, updateLocality, resetLocality } = useContext();
+function LocalityModal() {
+  const {
+    showLocalityModal,
+    localities,
+    updateLocality,
+    resetLocality,
+    hideLocality,
+  } = useContext();
   const [allLocalities, setAllLocalities] = useState([]);
   const [filterLocalities, setFilterLocalities] = useState([]);
 
@@ -32,9 +37,9 @@ function LocalityModal({ show, onClose }) {
 
   return (
     <Modal
-      show={show}
+      show={showLocalityModal}
       className="all-modal"
-      onHide={() => onClose()}
+      onHide={hideLocality}
       scrollable={true}
     >
       <Modal.Header>
@@ -43,7 +48,7 @@ function LocalityModal({ show, onClose }) {
           <button
             type="button"
             className="btn text-primary"
-            onClick={() => onClose()}
+            onClick={hideLocality}
           >
             Apply
           </button>
@@ -86,10 +91,5 @@ function LocalityModal({ show, onClose }) {
     </Modal>
   );
 }
-
-LocalityModal.propTypes = {
-  show: PropTypes.bool,
-  onclose: PropTypes.func,
-};
 
 export default memo(LocalityModal);

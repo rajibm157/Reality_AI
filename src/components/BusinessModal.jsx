@@ -1,12 +1,12 @@
 import { memo, useCallback, useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
-import PropTypes from "prop-types";
 import { useContext } from "_contexts";
 import { api } from "_utils";
 
-function BusinessModal({ show, onClose }) {
-  const { businessType, updateBusinessType } = useContext();
+function BusinessModal() {
+  const { showBusinessModal, businessType, updateBusiness, hideBusiness } =
+    useContext();
   const [businessTypes, setBusinessTypes] = useState([]);
   const [filterBusinessType, setFilterBusinessType] = useState([]);
 
@@ -32,9 +32,9 @@ function BusinessModal({ show, onClose }) {
 
   return (
     <Modal
-      show={show}
+      show={showBusinessModal}
       className="all-modal"
-      onHide={() => onClose()}
+      onHide={hideBusiness}
       scrollable={true}
     >
       <Modal.Header>
@@ -42,7 +42,7 @@ function BusinessModal({ show, onClose }) {
         <button
           type="button"
           className="btn text-primary"
-          onClick={() => updateBusinessType(null)}
+          onClick={() => updateBusiness(null)}
         >
           Reset
         </button>
@@ -64,10 +64,7 @@ function BusinessModal({ show, onClose }) {
                 type="radio"
                 name="business_type"
                 id={item._id}
-                onChange={() => {
-                  updateBusinessType(item);
-                  onClose();
-                }}
+                onChange={() => updateBusiness(item)}
                 value={item._id}
                 checked={businessType?._id === item._id}
               />
@@ -80,10 +77,5 @@ function BusinessModal({ show, onClose }) {
     </Modal>
   );
 }
-
-BusinessModal.propTypes = {
-  show: PropTypes.bool,
-  onclose: PropTypes.func,
-};
 
 export default memo(BusinessModal);

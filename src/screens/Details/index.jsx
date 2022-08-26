@@ -1,5 +1,3 @@
-import containers from "_containers";
-
 function DetailsScreen() {
   return (
     <main className="main">
@@ -2205,4 +2203,4 @@ function DetailsScreen() {
   );
 }
 
-export default containers(DetailsScreen);
+export default DetailsScreen;

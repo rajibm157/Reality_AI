@@ -1,27 +1,28 @@
 import { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Property } from "_components";
-import containers from "_containers";
 import { useContext } from "_contexts";
 import { images } from "_constants";
 import { importScript } from "_utils";
 
-function PropertiesScreen({ spinner, modals }) {
-  const { city, businessType, localities } = useContext();
+function PropertiesScreen() {
+  const {
+    city,
+    businessType,
+    localities,
+    showBusiness,
+    showCity,
+    showLocality,
+  } = useContext();
 
   useEffect(() => {
-    spinner.show();
-    setTimeout(() => {
-      spinner.hide();
-      importScript("owl.carousel");
-      importScript("custom");
-    }, 2000);
+    importScript("owl.carousel");
+    importScript("custom");
 
     return () => {
       importScript("owl.carousel", false);
       importScript("custom", false);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -52,7 +53,7 @@ function PropertiesScreen({ spinner, modals }) {
           <div className="mb-3 filter-bar">
             <button
               type="button"
-              onClick={modals.showBusiness}
+              onClick={showBusiness}
               className="btn btn-light rounded-5 shadow"
             >
               {businessType ? businessType.title : "Business Type"}{" "}
@@ -60,7 +61,7 @@ function PropertiesScreen({ spinner, modals }) {
             </button>
             <button
               type="button"
-              onClick={modals.showCity}
+              onClick={showCity}
               className="btn btn-light rounded-5 shadow mx-1"
             >
               {city ? city.name : "City"}{" "}
@@ -68,7 +69,7 @@ function PropertiesScreen({ spinner, modals }) {
             </button>
             <button
               type="button"
-              onClick={modals.showLocality}
+              onClick={showLocality}
               className="btn btn-light rounded-5 shadow"
             >
               {localities.length > 0 ? (
@@ -96,4 +97,4 @@ function PropertiesScreen({ spinner, modals }) {
   );
 }
 
-export default containers(PropertiesScreen);
+export default PropertiesScreen;

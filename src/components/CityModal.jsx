@@ -1,12 +1,11 @@
 import { memo, useCallback, useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
-import PropTypes from "prop-types";
 import { useContext } from "_contexts";
 import { api } from "_utils";
 
-function CityModal({ show, onClose }) {
-  const { city, updateCity } = useContext();
+function CityModal() {
+  const { showCityModal, city, updateCity, hideCity } = useContext();
   const [cities, setCities] = useState([]);
   const [filterCities, setFilterCities] = useState([]);
 
@@ -32,9 +31,9 @@ function CityModal({ show, onClose }) {
 
   return (
     <Modal
-      show={show}
+      show={showCityModal}
       className="all-modal"
-      onHide={() => onClose()}
+      onHide={hideCity}
       scrollable={true}
     >
       <Modal.Header>
@@ -64,10 +63,7 @@ function CityModal({ show, onClose }) {
                 type="radio"
                 name="city"
                 id={item._id}
-                onChange={() => {
-                  updateCity(item);
-                  onClose();
-                }}
+                onChange={() => updateCity(item)}
                 value={item._id}
                 checked={city?._id === item._id}
               />
@@ -80,10 +76,5 @@ function CityModal({ show, onClose }) {
     </Modal>
   );
 }
-
-CityModal.propTypes = {
-  show: PropTypes.bool,
-  onclose: PropTypes.func,
-};
 
 export default memo(CityModal);
