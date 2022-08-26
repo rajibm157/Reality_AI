@@ -3,6 +3,7 @@ import { ToastContainer } from "react-toastify";
 import { BrowserRouter, Routes as Switch, Route } from "react-router-dom";
 import { HomeScreen, DetailsScreen, PropertiesScreen } from "_screens";
 import { Loading } from "_components";
+import Guards from "./guards";
 
 function Routes() {
   return (
@@ -20,7 +21,9 @@ function Routes() {
           path="/properties"
           element={
             <Suspense fallback={<Loading show={true} />}>
-              <PropertiesScreen />
+              <Guards>
+                <PropertiesScreen />
+              </Guards>
             </Suspense>
           }
         />
@@ -28,12 +31,14 @@ function Routes() {
           path="/properties/:id"
           element={
             <Suspense fallback={<Loading show={true} />}>
-              <DetailsScreen />
+              <Guards>
+                <DetailsScreen />
+              </Guards>
             </Suspense>
           }
         />
       </Switch>
-      <ToastContainer />
+      <ToastContainer autoClose={2000} style={{ marginTop: "20px" }} />
     </BrowserRouter>
   );
 }
